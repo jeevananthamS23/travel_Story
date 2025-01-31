@@ -1,0 +1,32 @@
+npm i multer
+
+/**
+ * Multer File Upload Configuration:
+ * 
+ * 1. Importing Required Modules:
+ *      - `multer`: Middleware for handling file uploads in Node.js.
+ *      - `path`: Helps in working with file paths and extensions.
+ * 
+ * 2. Storage Configuration:
+ *      - `multer.diskStorage({})`: Specifies where and how the uploaded files will be stored.
+ *      - `destination(req, file, cb)`: Defines the upload directory (`./uploads/`).
+ *      - `filename(req, file, cb)`: Generates a unique filename using `Date.now()` and file extension.
+ * 
+ * 3. File Filtering:
+ *      - `fileFilter`: Ensures only image files (JPEG, PNG, JPG) are accepted.
+ *      - `file.mimetype.startsWith("image/")`: Checks if the uploaded file is an image.
+ *      - If not an image, an error message `"Only images are allowed"` is returned.
+ * 
+ * 4. Multer Initialization:
+ *      - `const upload = multer({ storage, fileFilter })`: Creates an instance of `multer` with storage and filter configurations.
+ * 
+ * 5. Using Multer in Express Routes:
+ *      - `upload.single("file")`: Allows a single file upload with the input field name `"file"`.
+ *      - If successful, `req.file` contains file details like `filename`, `path`, `mimetype`, etc.
+ * 
+ * 6. Workflow:
+ *      - A user uploads an image file via a form.
+ *      - Multer validates the file type.
+ *      - The file is saved in the `uploads/` folder with a unique name.
+ *      - The server responds with the uploaded file's details.
+ */
