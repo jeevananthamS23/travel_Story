@@ -167,7 +167,7 @@ app.post("/image-upload", upload.single("image"), async (req, res) => {
       return res.status(400).json({ error: true, message: "No image uploaded" });
      }
   const imageUrl = `http://localhost:8000/uploads/${req.file.filename}`;
-           res.status(201).json({ imageUrl });
+           res.status(200).json({ imageUrl });
   } 
   catch (error) {
   res.status(500).json({ error: true, message: error.message});
@@ -175,30 +175,30 @@ app.post("/image-upload", upload.single("image"), async (req, res) => {
 });
 
 
-// Delete an image from uploads folder
 app.delete("/delete-image", async (req, res) => {
-  const {imageUrl} = req.query;
-  if (!imageUrl){
-  return res.status(400).json({ error: true, message: "imageUrl parameter is required" });
+  const { imageUrl } = req.query;
+  if (!imageUrl) {
+    return res.status(400).json({ error: true, message: "imageUrl parameter is required" });
   }
 
   try {
     // Extract the filename from the imageUrl
     const filename = path.basename(imageUrl);
     // Define the file path
-          const filePath = path.join(__dirname, "uploads", filename);
-    // Check if the file exists
-           if (fs.existsSync (filePath)) {
-          // Delete the file from the uploads folder
-            fs.unlinkSync(filePath);
-                  res.status(200).json({ message: "Image deleted successfully" });
-    } else {
-    res.status(200).json({ error: true, message: "Image not found" });
-    }
-    } catch (error) {
-    res.status(500).json({ error: true, message: error.message });
-    }
+    const filePath = path.join(__dirname, "uploads", filename);
 
+    // Check if the file exists
+    if (fs.existsSync(filePath)) {
+      // Delete the file from the uploads folder
+      fs.unlinkSync(filePath);
+      res.status(200).json({ message: "Image deleted successfully" });
+    } else {
+      res.status(404).json({ error: true, message: "Image not found" });
+    }
+  } catch (error) {
+    console.error("Error deleting image:", error);
+    res.status(500).json({ error: true, message: error.message });
+  }
 });
 
 
@@ -208,7 +208,7 @@ app.put("/edit-story/:id", authenticateToken, async (req, res) => {
        const { title, story, visitedLocation, imageUrl, visitedDate } = req.body;
        const { userId } = req.user;
        // Validate required fields
-      if (!title || !story || !visitedLocation || !imageUrl || !visitedDate) {
+      if (!title || !story || !visitedLocation || !visitedDate) {
        return res.status(400).json({ error: true, message: "All fields are required" });
   }
   // Convert visited Date from milliseconds to Date object
@@ -234,7 +234,7 @@ app.put("/edit-story/:id", authenticateToken, async (req, res) => {
     });
 
 // delete travel story
-    app.post("/delete-story/:id", authenticateToken, async (req, res) => {
+    app.delete("/delete-story/:id", authenticateToken, async (req, res) => {
       const { id } = req.params; // Extract story ID from URL
       const { userId } = req.user; // Extract user ID from authentication
     

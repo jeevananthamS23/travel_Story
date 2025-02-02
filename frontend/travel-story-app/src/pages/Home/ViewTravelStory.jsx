@@ -78,3 +78,4 @@ const ViewTravelStory = ({ storyInfo, onClose, onEditClick, onDeleteClick }) => 
 };
 
 export default ViewTravelStory;
+  

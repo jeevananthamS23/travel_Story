@@ -5,6 +5,8 @@ import axiosInstance from "../../utils/axiosinstance";
 import { MdAdd } from "react-icons/md";
 import Modal from "react-modal";
 import ViewTravelStory from "./ViewTravelStory";
+import react1 from "assets/react.svg"
+
 
 import AddEditTravelStory from "./AddEditTravelStory";
 import TravelStoryCard from "../../components/Cards/TravelStoryCard";
@@ -85,8 +87,8 @@ const Home = () => {
   };
 
   // Handle Edit Story
-  const handleEdit = (story) => {
-    setOpenAddEditModal({ isShow: true, type: "edit", data: story });
+  const handleEdit = (data) => {
+    setOpenAddEditModal({ isShow: true, type: "edit", data:data });
   };
 
   // Handle Viewing Story
@@ -94,6 +96,27 @@ const Home = () => {
     setOpenViewModal({isShow:true,data});
    
   };
+
+
+  const deleteTravelStory = async (data) => { 
+    if (!data || !data._id) return; // Ensure valid data before proceeding
+  
+    const storyId = data._id; 
+    
+    try { 
+      const response = await axiosInstance.delete("/delete-story/"+storyId); 
+      if (response.data && !response.data.error) { 
+        toast.success("Story Deleted Successfully");
+        setOpenViewModal((prevState) => ({ ...prevState, isShow: false })); // ✅ Corrected isShow
+        getAllTravelStories(); 
+      } 
+    } catch (error) {
+      console.error("An unexpected error occurred. Please try again.");
+    }
+  };
+  
+
+
 
   useEffect(() => {
     getUserInfo();
@@ -118,14 +141,13 @@ const Home = () => {
                   visitedDate={item.visitedDate}
                   visitedLocation={item.visitedLocation}
                   isFavourite={item.isFavourite}
-                 
                   onClick={() => handleViewStory(item)}
                   onFavouriteClick={() => updateIsFavourite(item)}
                 />
               ))}
             </div>
           ) : (
-            <>Empty Card here</>
+            < EmptyCard imgSrc={react1}
           )}
 
           <div className="w-[320px]"></div>
@@ -171,10 +193,15 @@ const Home = () => {
   className="model-box" // Ensured className is properly written
 >
 <ViewTravelStory 
-storyInfo={openViewModal.data||null} 
-onClose={()=>{setOpenViewModal({isShow:true,type:"add",data})}}   
-onEditClick={()=>{}}   
-onDeleteClick={()=>{}}/>
+  storyInfo={openViewModal.data || null} 
+  onClose={() => setOpenViewModal((prevState) => ({ ...prevState, isShow: false }))}  
+  onEditClick={() => {
+    setOpenViewModal((prevState) => ({ ...prevState, isShow: false }));
+    handleEdit(openViewModal.data || null);
+  }} 
+  onDeleteClick={() => deleteTravelStory(openViewModal.data)} // ✅ Fixed execution issue
+/>
+
 </Modal>
 
 

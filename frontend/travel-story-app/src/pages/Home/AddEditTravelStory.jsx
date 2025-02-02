@@ -10,16 +10,49 @@ import axiosInstance from "../../utils/axiosinstance"; // Ensure axiosInstance i
 import moment from "moment"; // Ensure moment is imported
 
 const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) => {
-  const [visitedDate, setVisitedDate] = useState(null);
-  const [title, setTitle] = useState("");
-  const [storyImg, setStoryImg] = useState(null);
-  const [visitedLocation, setVisitedLocation] = useState([]);
-  const [story, setStory] = useState("");
+  const [visitedDate, setVisitedDate] = useState(storyInfo?.
+    visitedDate||"");
+  const [title, setTitle] = useState(storyInfo?.title||"");
+  const [storyImg, setStoryImg] = useState(storyInfo?.imageUrl||"");
+  const [visitedLocation, setVisitedLocation] = useState(storyInfo?.visitedLocation||[]);
+  const [story, setStory] = useState(storyInfo?.story||"");
   const [error, setError] = useState(""); // State for error messages
 
-  // Function to update the travel story
-  const updateTravelStory = () => {
-    // Implement the update functionality here
+  const updateTravelStory = async () => {
+    try {
+      let postData = {
+        title,
+        story,
+        imageUrl: storyInfo.imageUrl || "",
+        visitedLocation,
+        visitedDate: visitedDate ? moment(visitedDate).valueOf() : moment().valueOf(),
+      };
+  
+      const storyId = storyInfo._id;
+  
+      if (typeof storyImg === "object") {
+        const imageuploads = await uploadImage(storyImg);
+        console.log("Uploaded Image URL:", imageuploads.imageUrl); // Log the URL
+        postData = { ...postData, imageUrl: imageuploads.imageUrl || "" };
+      }
+  
+      console.log("Post Data:", postData); // Log the payload being sent
+  
+      const response = await axiosInstance.put("/edit-story/" + storyId, postData);
+  
+      if (response.data && response.data.story) {
+        toast.success("Story updated successfully");
+        getAllTravelStories();
+        onClose();
+      }
+    } catch (error) {
+      console.error("Update Error:", error); // Log the full error
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("An unexpected error occurred. Please try again.");
+      }
+    }
   };
 
   // Function to add a new travel story
@@ -47,8 +80,13 @@ const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) =
         onClose();
       }
     } catch (error) {
-      console.error("Error adding story:", error);
-      toast.error("Failed to add story");
+     if(error.response && error.response.data && error.response.data.message)
+     {
+      setError(error.response.data.message)
+     }
+     else{
+      setError("An unexpected error occured. please try again.");
+     }
     }
   };
 
@@ -74,8 +112,45 @@ const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) =
   };
 
   const handleDeleteStoryImg = async () => {
-    setStoryImg(null);
+    try {
+      // Deleting the Image
+      const deleteImgRes = await axiosInstance.delete("/delete-image", {
+        params: {
+          imageUrl: storyInfo.imageUrl,
+        },
+      });
+  
+      if (deleteImgRes.data) {
+        const storyId = storyInfo._id;
+        const postData = {
+          title,
+          story,
+          visitedLocation,
+          visitedDate: moment().valueOf(),
+          imageUrl: "",
+        };
+  
+        // Updating story
+        const response = await axiosInstance.put(
+          "/edit-story/" + storyId,
+          postData
+        );
+  
+        if (response.data && response.data.story) {
+          setStoryImg(null);
+          toast.success("Image deleted successfully");
+        }
+      }
+    } catch (error) {
+      console.error("Error deleting story image:", error);
+      if (error.response && error.response.data && error.response.data.message) {
+        setError(error.response.data.message);
+      } else {
+        setError("An unexpected error occurred. Please try again.");
+      }
+    }
   };
+
 
   return (
     <div className="relative">
