@@ -1,17 +1,18 @@
 import React from "react";
+import "./EmptyCard.css"; // Import external CSS
 
 const EmptyCard = ({ imgSrc, message }) => {
   return (
-    <div className="flex flex-col items-center justify-center mt-20 px-4 text-center">
+    <div className="empty-card-container">
       {/* Empty State Image */}
       <img 
         src={imgSrc} 
         alt="Empty state" 
-        className="w-20 sm:w-24 md:w-28 lg:w-32 object-contain" 
+        className="empty-card-image" 
       />
 
       {/* Message */}
-      <p className="max-w-md text-sm sm:text-base font-medium text-slate-700 leading-6 mt-4">
+      <p className="empty-card-message">
         {message}
       </p>
     </div>

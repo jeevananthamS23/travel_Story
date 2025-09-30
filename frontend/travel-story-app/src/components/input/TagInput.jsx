@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MdAdd, MdClose } from "react-icons/md";
 import { GrMapLocation } from "react-icons/gr";
+import "./TagInput.css"; // ✅ Import CSS
 
 const TagInput = ({ tags, setTags }) => {
   const [inputValue, setInputValue] = useState("");
@@ -33,24 +34,21 @@ const TagInput = ({ tags, setTags }) => {
   };
 
   return (
-    <div className="w-full max-w-md">
+    <div className="taginput-container">
       {/* Display existing tags */}
       {tags.length > 0 && (
-        <div className="flex items-center gap-2 flex-wrap mt-2">
+        <div className="tag-list">
           {tags.map((tag, index) => (
-            <span
-              key={index}
-              className="flex items-center gap-2 text-sm text-cyan-700 bg-cyan-100 px-3 py-1 rounded-full shadow-sm"
-            >
-              <GrMapLocation className="text-sm" />
+            <span key={index} className="tag-item">
+              <GrMapLocation className="tag-icon" />
               {tag}
               <button
                 type="button"
                 onClick={() => handleRemoveTag(tag)}
-                className="text-slate-500 hover:text-red-500 transition"
+                className="tag-remove-btn"
                 aria-label={`Remove ${tag}`}
               >
-                <MdClose className="text-lg" />
+                <MdClose className="tag-remove-icon" />
               </button>
             </span>
           ))}
@@ -58,11 +56,11 @@ const TagInput = ({ tags, setTags }) => {
       )}
 
       {/* Input + Add button */}
-      <div className="flex items-center gap-3 mt-4">
+      <div className="tag-input-row">
         <input
           type="text"
           value={inputValue}
-          className="flex-1 text-sm border border-cyan-300 px-3 py-2 rounded outline-none focus:border-cyan-500 transition"
+          className="tag-input"
           placeholder="Add location"
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
@@ -70,11 +68,11 @@ const TagInput = ({ tags, setTags }) => {
         />
         <button
           type="button"
-          className="w-9 h-9 flex items-center justify-center rounded-full border border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white transition"
+          className="tag-add-btn"
           onClick={addNewTag}
           aria-label="Add location"
         >
-          <MdAdd className="text-xl" />
+          <MdAdd className="tag-add-icon" />
         </button>
       </div>
     </div>

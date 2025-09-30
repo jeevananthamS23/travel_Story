@@ -1,0 +1,83 @@
+.date-selector {
+  position: relative;
+  width: 100%;
+}
+
+/* Date Button */
+.date-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem; /* text-sm */
+  font-weight: 500;
+  color: #0284c7; /* sky-600 */
+  background-color: rgba(186, 230, 253, 0.4); /* sky-200/40 */
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem; /* px-3 py-2 */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.date-btn:hover {
+  background-color: rgba(186, 230, 253, 0.7); /* hover:bg-sky-200/70 */
+}
+
+.date-btn .icon {
+  font-size: 1.125rem; /* text-lg */
+}
+
+/* Modal Overlay */
+.date-picker-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* bg-black/30 */
+  backdrop-filter: blur(6px); /* backdrop-blur-sm */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  padding: 0 1rem;
+}
+
+/* Modal Box */
+.date-picker-modal {
+  position: relative;
+  width: 100%;
+  max-width: 28rem; /* max-w-md */
+  background-color: #f0f9ff; /* sky-50 */
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  padding: 1.25rem; /* p-5 */
+  overflow-y: auto;
+  max-height: 90vh;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 2.5rem; /* w-10 */
+  height: 2.5rem; /* h-10 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px; /* rounded-full */
+  background-color: #e0f2fe; /* sky-100 */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: #bae6fd; /* sky-200 */
+}
+
+.close-btn .icon {
+  font-size: 1.25rem; /* text-xl */
+  color: #0284c7; /* sky-600 */
+}
+
+/* DayPicker wrapper */
+.date-picker-calendar {
+  margin: 0 auto;
+}

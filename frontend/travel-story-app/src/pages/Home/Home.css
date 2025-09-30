@@ -1,0 +1,88 @@
+.home-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 24px;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 24px;
+}
+
+@media (min-width: 1024px) {
+  .home-content {
+    flex-direction: row;
+  }
+}
+
+.story-list {
+  flex: 1;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .story-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .story-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.empty-card-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.calendar-sidebar {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .calendar-sidebar {
+    width: 360px;
+  }
+}
+
+.calendar-box {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 8px rgba(148, 163, 184, 0.7);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.floating-add-btn {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: #06b6d4;
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.floating-add-btn:hover {
+  transform: scale(1.1);
+  background-color: #22d3ee;
+}
+
+.add-icon {
+  font-size: 28px;
+  color: #fff;
+}

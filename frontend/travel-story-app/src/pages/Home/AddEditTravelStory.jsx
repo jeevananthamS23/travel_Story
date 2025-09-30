@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "../../utils/axiosinstance";
 import moment from "moment";
+import "./addEditTravelStory.css"; 
 
 const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) => {
   const [visitedDate, setVisitedDate] = useState(storyInfo?.visitedDate || "");
@@ -17,9 +18,6 @@ const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) =
   const [story, setStory] = useState(storyInfo?.story || "");
   const [error, setError] = useState("");
 
-  /** ------------------------------
-   *  Update Travel Story
-   * ------------------------------ */
   const updateTravelStory = async () => {
     try {
       let postData = {
@@ -50,9 +48,6 @@ const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) =
     }
   };
 
-  /** ------------------------------
-   *  Add New Travel Story
-   * ------------------------------ */
   const addNewTravelStory = async () => {
     try {
       let imageUrl = "";
@@ -80,9 +75,6 @@ const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) =
     }
   };
 
-  /** ------------------------------
-   *  Validate and Submit
-   * ------------------------------ */
   const handleAddOrUpdateClick = () => {
     if (!title) {
       setError("Please enter the title");
@@ -101,9 +93,6 @@ const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) =
     }
   };
 
-  /** ------------------------------
-   *  Delete Image
-   * ------------------------------ */
   const handleDeleteStoryImg = async () => {
     try {
       const deleteImgRes = await axiosInstance.delete("/delete-image", {
@@ -134,72 +123,48 @@ const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) =
   };
 
   return (
-    <div className="relative p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
-      {/* Header Section */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <h5 className="text-xl sm:text-2xl font-semibold text-slate-700">
-          {type === "add" ? "Add Story" : "Update Story"}
-        </h5>
-
-        <div className="flex items-center gap-3 bg-cyan-50/50 p-2 rounded-lg w-full sm:w-auto">
-          {type === "add" ? (
-            <button
-              className="btn-small flex items-center justify-center gap-2 w-full sm:w-auto"
-              onClick={handleAddOrUpdateClick}
-            >
-              <MdAdd className="text-lg" /> ADD STORY
-            </button>
-          ) : (
-            <button
-              className="btn-small flex items-center justify-center gap-2 w-full sm:w-auto"
-              onClick={handleAddOrUpdateClick}
-            >
-              <MdUpdate className="text-lg" /> UPDATE STORY
-            </button>
-          )}
-
-          <button onClick={onClose} className="ml-2">
-            <MdClose className="text-xl text-slate-400 hover:text-slate-600" />
+    <div className="story-page">
+      {/* Header */}
+      <div className="story-header">
+        <h5 className="story-title">{type === "add" ? "Add Story" : "Update Story"}</h5>
+        <div className="story-actions">
+          <button className="btn-small" onClick={handleAddOrUpdateClick}>
+            {type === "add" ? <><MdAdd /> ADD STORY</> : <><MdUpdate /> UPDATE STORY</>}
+          </button>
+          <button onClick={onClose} className="close-btn">
+            <MdClose />
           </button>
         </div>
       </div>
 
-      {/* Error Message */}
-      {error && <p className="text-red-500 text-sm mt-2 text-right">{error}</p>}
+      {/* Error */}
+      {error && <p className="error-text">{error}</p>}
 
-      {/* Form Section */}
-      <div className="mt-5 flex flex-col gap-4">
-        {/* Title */}
-        <div className="flex flex-col gap-2">
-          <label className="input-label text-sm sm:text-base">Title</label>
+      {/* Form */}
+      <div className="story-form">
+        <div className="form-group">
+          <label>Title</label>
           <input
             type="text"
-            className="text-lg sm:text-xl text-slate-950 outline-none p-2 border border-gray-300 rounded-md w-full"
+            className="input-box"
             placeholder="A day at the Great Wall"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
 
-        {/* Date Selector */}
-        <div className="my-3">
+        <div className="form-group">
           <DateSelector date={visitedDate} setDate={setVisitedDate} />
         </div>
 
-        {/* Image Selector */}
-        <div className="w-full">
-          <ImageSelector
-            image={storyImg}
-            setImage={setStoryImg}
-            handleDeleteImg={handleDeleteStoryImg}
-          />
+        <div className="form-group">
+          <ImageSelector image={storyImg} setImage={setStoryImg} handleDeleteImg={handleDeleteStoryImg} />
         </div>
 
-        {/* Story */}
-        <div className="flex flex-col gap-2 mt-4">
-          <label className="input-label text-sm sm:text-base">Story</label>
+        <div className="form-group">
+          <label>Story</label>
           <textarea
-            className="text-sm text-slate-950 outline-none bg-slate-50 p-2 rounded border border-gray-300 w-full resize-none"
+            className="textarea-box"
             placeholder="Your Story"
             rows={8}
             value={story}
@@ -207,9 +172,8 @@ const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) =
           />
         </div>
 
-        {/* Visited Location */}
-        <div className="pt-3">
-          <label className="input-label text-sm sm:text-base">Visited Location</label>
+        <div className="form-group">
+          <label>Visited Location</label>
           <TagInput tags={visitedLocation} setTags={setVisitedLocation} />
         </div>
       </div>

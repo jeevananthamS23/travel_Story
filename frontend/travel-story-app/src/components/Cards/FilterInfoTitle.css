@@ -1,0 +1,68 @@
+.filter-info-container {
+  margin-bottom: 1.25rem; /* mb-5 */
+  padding-left: 0.5rem;  /* px-2 */
+  padding-right: 0.5rem;
+}
+
+.filter-info-heading {
+  font-size: 1.125rem; /* text-lg */
+  font-weight: 600;    /* font-semibold */
+  color: #1e293b;      /* text-slate-800 */
+}
+
+@media (min-width: 640px) {
+  .filter-info-heading {
+    font-size: 1.25rem; /* sm:text-xl */
+  }
+}
+
+.filter-info-flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem; /* gap-3 */
+}
+
+/* Date Chip Styles */
+.date-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* gap-2 */
+  background-color: #f1f5f9; /* bg-slate-100 */
+  border: 1px solid #e2e8f0; /* border-slate-200 */
+  padding: 0.375rem 0.75rem; /* px-3 py-1.5 */
+  border-radius: 0.5rem; /* rounded-lg */
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* shadow-sm */
+}
+
+.date-chip-text {
+  font-size: 0.75rem; /* text-xs */
+  font-weight: 500;   /* font-medium */
+  color: #334155;     /* text-slate-700 */
+}
+
+@media (min-width: 640px) {
+  .date-chip-text {
+    font-size: 0.875rem; /* sm:text-sm */
+  }
+}
+
+.date-chip-button {
+  padding: 0.25rem; /* p-1 */
+  border-radius: 9999px; /* rounded-full */
+  transition: background-color 0.2s ease-in-out;
+}
+
+.date-chip-button:hover {
+  background-color: #e2e8f0; /* hover:bg-slate-200 */
+}
+
+.date-chip-icon {
+  font-size: 1.125rem; /* text-lg */
+  color: #64748b;      /* text-slate-500 */
+  transition: color 0.2s ease-in-out;
+}
+
+.date-chip-icon:hover {
+  color: #334155; /* hover:text-slate-700 */
+}

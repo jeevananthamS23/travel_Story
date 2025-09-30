@@ -1,25 +1,26 @@
 import React from "react";
 import { getInitials } from "../../utils/helper";
+import "./ProfileInfo.css"; // External CSS
 
 const ProfileInfo = ({ userInfo, onLogout }) => {
   if (!userInfo) {
-    return <p className="text-sm font-medium text-slate-500">Loading...</p>;
+    return <p className="profile-loading">Loading...</p>;
   }
 
   return (
-    <div className="flex items-center gap-3 sm:gap-4">
+    <div className="profile-container">
       {/* Profile Avatar */}
-      <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full text-slate-950 font-semibold bg-slate-100 shadow-sm">
+      <div className="profile-avatar">
         {getInitials(userInfo?.fullName || "G")}
       </div>
 
       {/* Profile Info */}
-      <div className="hidden sm:flex flex-col">
-        <p className="text-sm sm:text-base font-medium text-slate-800 truncate max-w-[120px]">
+      <div className="profile-info">
+        <p className="profile-name">
           {userInfo.fullName || "Guest"}
         </p>
         <button
-          className="text-xs sm:text-sm text-slate-600 hover:text-slate-800 underline transition-colors"
+          className="profile-logout"
           onClick={onLogout}
           aria-label="Logout"
         >

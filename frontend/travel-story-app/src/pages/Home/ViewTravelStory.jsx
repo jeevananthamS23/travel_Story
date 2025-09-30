@@ -2,53 +2,51 @@ import React from "react";
 import { MdDeleteOutline, MdUpdate, MdClose } from "react-icons/md";
 import { GrMapLocation } from "react-icons/gr";
 import moment from "moment";
+import "./ViewTravelStory.css";
 
 const ViewTravelStory = ({ storyInfo, onClose, onEditClick, onDeleteClick }) => {
-  if (!storyInfo) return null; // ✅ Prevents crashes if no data is passed
+  if (!storyInfo) return null;
 
   return (
-    <div className="relative w-full max-w-4xl mx-auto p-4">
-      {/* Header Buttons */}
-      <div className="flex items-center justify-end mb-4">
-        <div className="flex flex-wrap items-center gap-2 bg-cyan-50/50 p-2 rounded-lg">
+    <div className="viewstory-container">
+
+      <div className="viewstory-header">
+        <div className="header-actions">
           <button
-            className="btn-small flex items-center gap-1 text-sm px-3 py-1 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700 transition-all"
+            className="btn-update"
             onClick={() => onEditClick(storyInfo)}
           >
-            <MdUpdate className="text-lg" /> <span className="hidden sm:inline">UPDATE STORY</span>
+            <MdUpdate className="btn-icon" />
+            <span className="btn-text">UPDATE STORY</span>
           </button>
 
           <button
-            className="btn-small btn-delete flex items-center gap-1 text-sm px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all"
+            className="btn-delete"
             onClick={() => onDeleteClick(storyInfo?._id)}
           >
-            <MdDeleteOutline className="text-lg" /> <span className="hidden sm:inline">DELETE</span>
+            <MdDeleteOutline className="btn-icon" />
+            <span className="btn-text">DELETE</span>
           </button>
 
-          <button
-            onClick={onClose}
-            className="ml-2 p-2 rounded-full hover:bg-gray-200 transition"
-          >
-            <MdClose className="text-xl text-slate-400" />
+          <button onClick={onClose} className="btn-close">
+            <MdClose className="btn-close-icon" />
           </button>
         </div>
       </div>
 
       {/* Story Content */}
-      <div className="flex-1 flex flex-col gap-2 py-4">
-        <h1 className="text-2xl md:text-3xl font-semibold text-slate-950 text-center md:text-left">
-          {storyInfo?.title || "No Title"}
-        </h1>
+      <div className="story-content">
+        <h1 className="story-title">{storyInfo?.title || "No Title"}</h1>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-3">
-          <span className="text-xs text-slate-500">
+        <div className="story-meta">
+          <span className="story-date">
             {storyInfo?.visitedDate
               ? moment(storyInfo.visitedDate).format("Do MMM YYYY")
               : "No Date"}
           </span>
 
-          <div className="inline-flex flex-wrap items-center gap-2 text-[13px] text-cyan-600 bg-cyan-200/40 rounded px-2 py-1">
-            <GrMapLocation className="text-sm" />
+          <div className="story-location">
+            <GrMapLocation className="location-icon" />
             {storyInfo?.visitedLocation?.length > 0 ? (
               storyInfo.visitedLocation.map((item, index) => (
                 <span key={index}>
@@ -64,26 +62,20 @@ const ViewTravelStory = ({ storyInfo, onClose, onEditClick, onDeleteClick }) => 
       </div>
 
       {/* Story Image */}
-      <div className="w-full my-4">
+      <div className="story-image">
         {storyInfo?.imageUrl ? (
-          <img
-            src={storyInfo.imageUrl}
-            alt="selected"
-            className="w-full max-h-[300px] sm:max-h-[400px] object-cover rounded-lg"
-          />
+          <img src={storyInfo.imageUrl} alt="selected" />
         ) : (
-          <p className="text-center text-gray-500">No Image Available</p>
+          <p className="no-image">No Image Available</p>
         )}
       </div>
 
       {/* Story Description */}
-      <div className="mt-4">
+      <div className="story-description">
         {storyInfo?.story ? (
-          <p className="text-sm md:text-base text-slate-950 leading-6 text-justify whitespace-pre-line">
-            {storyInfo.story}
-          </p>
+          <p>{storyInfo.story}</p>
         ) : (
-          <p className="text-center text-gray-500">No Story Available</p>
+          <p className="no-story">No Story Available</p>
         )}
       </div>
     </div>

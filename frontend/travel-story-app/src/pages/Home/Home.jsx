@@ -15,8 +15,8 @@ import TravelStoryCard from "../../components/Cards/TravelStoryCard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { DayPicker } from "react-day-picker";
+import "./Home.css";
 
-// Set the app element for accessibility
 Modal.setAppElement("#root");
 
 const Home = () => {
@@ -37,7 +37,7 @@ const Home = () => {
     data: null,
   });
 
-  // Fetch user info
+  // Get user info
   const getUserInfo = async () => {
     try {
       const response = await axiosInstance.get("/get-user");
@@ -52,7 +52,7 @@ const Home = () => {
     }
   };
 
-  // Fetch all travel stories
+  // Get all stories
   const getAllTravelStories = async () => {
     try {
       const response = await axiosInstance.get("/get-all-stories");
@@ -64,7 +64,7 @@ const Home = () => {
     }
   };
 
-  // Update favourite status
+  // Update fav
   const updateIsFavourite = async (storyData) => {
     const storyId = storyData._id;
     try {
@@ -127,7 +127,7 @@ const Home = () => {
     getAllTravelStories();
   };
 
-  // Filter stories by date
+  // Filter by date
   const filterStoriesByDate = async (day) => {
     try {
       const startDate = day.from ? moment(day.from).valueOf() : null;
@@ -174,19 +174,17 @@ const Home = () => {
         handleClearSearch={handleClearSearch}
       />
 
-      <div className="container mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        {/* Filter Info */}
+      <div className="home-container">
         <FilterInfoTitle
           filterType={filterType}
           filterDates={dateRange}
           onClear={resetFilter}
         />
 
-        <div className="flex flex-col lg:flex-row gap-7 mt-6">
-          {/* Main Content */}
-          <div className="flex-1">
+        <div className="home-content">
+          <div className="story-list">
             {allStories.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+              <div className="story-grid">
                 {allStories.map((item) => (
                   <TravelStoryCard
                     key={item._id}
@@ -202,7 +200,7 @@ const Home = () => {
                 ))}
               </div>
             ) : (
-              <div className="flex justify-center">
+              <div className="empty-card-wrap">
                 <EmptyCard
                   img={Logo}
                   message={getEmptyCardMessage(filterType)}
@@ -211,9 +209,8 @@ const Home = () => {
             )}
           </div>
 
-          {/* Calendar Sidebar */}
-          <div className="w-full lg:w-[360px]">
-            <div className="bg-white border border-slate-200 shadow-lg shadow-slate-200/70 rounded-lg p-4">
+          <div className="calendar-sidebar">
+            <div className="calendar-box">
               <DayPicker
                 captionLayout="dropdown-buttons"
                 mode="range"
@@ -226,7 +223,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Add/Edit Story Modal */}
+      {/* Add/Edit Modal */}
       <Modal
         isOpen={openAddEditModal.isShow}
         onRequestClose={() =>
@@ -278,14 +275,13 @@ const Home = () => {
         />
       </Modal>
 
-      {/* Floating Add Button */}
       <button
-        className="w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-full bg-primary hover:bg-cyan-400 fixed right-5 bottom-5 sm:right-10 sm:bottom-10 shadow-lg transition-transform transform hover:scale-110"
+        className="floating-add-btn"
         onClick={() =>
           setOpenAddEditModal({ isShow: true, type: "add", data: null })
         }
       >
-        <MdAdd className="text-2xl sm:text-3xl text-white" />
+        <MdAdd className="add-icon" />
       </button>
 
       <ToastContainer />

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../../components/input/PasswordInput';
 import { validateEmail } from '../../utils/helper';
 import axiosInstance from '../../utils/axiosinstance';
+import './signUp.css'; // <-- New CSS
 
 const SignUp = () => {
   const navigate = useNavigate(); 
@@ -52,43 +53,39 @@ const SignUp = () => {
   };
 
   return (
-    <div className="h-screen bg-cyan-50 overflow-hidden relative">
+    <div className="signup-page">
       {/* Decorative UI Boxes */}
-      <div className="login-ui-box right-10 -top-40 hidden md:block" />
-      <div className="login-ui-box bg-cyan-200 -bottom-40 right-1/2 hidden md:block" />
+      <div className="login-ui-box right-box" />
+      <div className="login-ui-box bottom-box" />
 
-      <div className="container h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-20 mx-auto">
-
+      <div className="signup-container">
+        
         {/* Left Image Section */}
-        <div className="w-full md:w-1/3 h-[40vh] md:h-[85vh] flex items-end bg-signup-bg-img bg-cover rounded-t-lg md:rounded-l-lg md:rounded-tr-none p-6 md:p-10 z-50">
+        <div className="signup-left">
           <div>
-            <h4 className="text-3xl md:text-5xl text-white font-semibold leading-snug">
-              Join the <br /> Adventure
-            </h4>
-            <p className="text-sm md:text-[15px] text-white leading-6 pr-0 md:pr-7 mt-4">
+            <h4 className="signup-title">Join the <br /> Adventure</h4>
+            <p className="signup-subtext">
               Create an account to start documenting your travels and preserving your memories in your personal travel journal.
             </p>
           </div>
         </div>
 
         {/* Right Form Section */}
-        <div className="w-full md:w-1/3 h-[60vh] md:h-[75vh] bg-white rounded-b-lg md:rounded-r-lg relative p-6 md:p-16 shadow-lg shadow-cyan-200/20">
-          <form onSubmit={handleSignUp}>
-            <h4 className="text-xl md:text-2xl font-semibold mb-5 md:mb-7 text-center md:text-left">
-              Sign Up
-            </h4>
+        <div className="signup-right">
+          <form onSubmit={handleSignUp} className="signup-form">
+            <h4 className="form-title">Sign Up</h4>
 
             <input
               type="text"
               placeholder="Full Name"
-              className="input-box mb-3"
+              className="input-box"
               value={name}
               onChange={({ target }) => setName(target.value)}
             />
             <input
               type="text"
               placeholder="Email"
-              className="input-box mb-3"
+              className="input-box"
               value={email}
               onChange={({ target }) => setEmail(target.value)}
             />
@@ -98,20 +95,15 @@ const SignUp = () => {
               onChange={({ target }) => setPassword(target.value)}
             />
 
-            {error && <p className="text-red-500 text-xs pb-1">{error}</p>}
+            {error && <p className="error-text">{error}</p>}
 
-            <button
-              type="submit"
-              className="btn-primary w-full text-sm md:text-base"
-            >
-              CREATE ACCOUNT
-            </button>
+            <button type="submit" className="btn-primary">CREATE ACCOUNT</button>
 
-            <p className="text-xs text-slate-500 text-center my-4">Or</p>
+            <p className="or-text">Or</p>
 
             <button
               type="button"
-              className="btn-primary btn-light w-full text-sm md:text-base"
+              className="btn-primary btn-light"
               onClick={() => navigate("/login")}
             >
               LOGIN
