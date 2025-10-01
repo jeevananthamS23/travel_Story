@@ -160,7 +160,6 @@ app.get("/get-all-stories", authenticateToken, async (req, res) => {
 
 
 // Route to handle image upload
-// Route to handle image upload
 app.post("/image-upload", upload.single("image"), async (req, res) => {
   try {
        if (!req.file) {
