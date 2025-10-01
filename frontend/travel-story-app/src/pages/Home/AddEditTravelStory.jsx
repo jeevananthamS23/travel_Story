@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axiosInstance from "../../utils/axiosinstance";
 import moment from "moment";
-import "./addEditTravelStory.css"; 
+import "./AddEditTravelStory.css"; 
 
 const AddEditTravelStory = ({ storyInfo, type, onClose, getAllTravelStories }) => {
   const [visitedDate, setVisitedDate] = useState(storyInfo?.visitedDate || "");

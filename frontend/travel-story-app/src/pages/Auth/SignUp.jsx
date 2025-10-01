@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../../components/input/PasswordInput';
 import { validateEmail } from '../../utils/helper';
 import axiosInstance from '../../utils/axiosinstance';
-import './signUp.css'; 
+import './SignUp.css'; 
 
 const SignUp = () => {
   const navigate = useNavigate(); 
