@@ -4,7 +4,7 @@ import ProfileInfo from "../Cards/ProfileInfo";
 import { useNavigate } from "react-router-dom";
 import Searchbar from "./SearchBar";
 import { MdMenu, MdClose } from "react-icons/md";
-import "./Navbar.css"; // ✅ Import CSS
+import "./Navbar.css"; 
 
 const Navbar = ({
   userInfo,
@@ -39,7 +39,7 @@ const Navbar = ({
       <div className="navbar-logo" onClick={() => navigate("/dashboard")}>
         <img src={Logo} alt="Travel Story" className="navbar-logo-img" />
       </div>
-
+       <h1 className="header">Save Your Experiences</h1>
       {isToken && (
         <>
           {/* Desktop Searchbar & Profile */}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MdOutlineDateRange, MdClose } from "react-icons/md";
 import { DayPicker } from "react-day-picker";
 import moment from "moment";
-import "./DateSelector.css";  // ✅ Import CSS
+import "./DateSelector.css";  
 
 const DateSelector = ({ date, setDate }) => {
   const [openDatePicker, setOpenDatePicker] = useState(false);

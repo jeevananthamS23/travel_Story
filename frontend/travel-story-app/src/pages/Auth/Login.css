@@ -1,7 +1,6 @@
-/* Full page */
 .login-page {
   height: 100vh;
-  background-color: #ecfeff; /* cyan-50 */
+  background-color: #ecfeff; 
   overflow: hidden;
   position: relative;
 }
@@ -12,7 +11,7 @@
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  background: #a5f3fc; /* cyan-200 */
+  background: #a5f3fc; 
   z-index: 0;
 }
 
@@ -133,13 +132,13 @@
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #cbd5e1; /* slate-300 */
+  border: 1px solid #cbd5e1; 
   margin-bottom: 1rem;
   font-size: 0.95rem;
 }
 
 .input-box:focus {
-  border-color: #06b6d4; /* cyan-500 */
+  border-color: #06b6d4;
   outline: none;
 }
 
@@ -148,7 +147,7 @@
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-  background-color: #06b6d4; /* cyan-500 */
+  background-color: #06b6d4; 
   color: white;
   font-weight: 600;
   font-size: 1rem;
@@ -159,22 +158,22 @@
 }
 
 .btn-primary:hover {
-  background-color: #0891b2; /* darker cyan */
+  background-color: #0891b2; 
 }
 
 .btn-light {
-  background-color: #e0f2fe; /* cyan-100 */
+  background-color: #e0f2fe; 
   color: #06b6d4;
   margin-top: 0.5rem;
 }
 
 .btn-light:hover {
-  background-color: #bae6fd; /* cyan-200 */
+  background-color: #bae6fd; 
 }
 
 /* Error message */
 .error-text {
-  color: #ef4444; /* red-500 */
+  color: #ef4444; 
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
 }
@@ -182,7 +181,7 @@
 /* OR text */
 .or-text {
   font-size: 0.75rem;
-  color: #64748b; /* slate-500 */
+  color: #64748b; 
   text-align: center;
   margin: 1rem 0;
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
 import { GrMapLocation } from "react-icons/gr";
-import "./TravelStoryCard.css";   // ✅ Import CSS file
+import "./TravelStoryCard.css";   
 
 const TravelStoryCard = ({
   imgUrl,

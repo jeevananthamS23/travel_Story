@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaRegFileImage } from "react-icons/fa";
 import { MdDeleteOutline } from "react-icons/md";
-import "./ImageSelector.css"; // ✅ Import CSS
+import "./ImageSelector.css"; 
 
 const ImageSelector = ({ image, setImage, handleDeleteImg }) => {
   const inputRef = useRef(null);

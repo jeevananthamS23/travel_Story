@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MdAdd, MdClose } from "react-icons/md";
 import { GrMapLocation } from "react-icons/gr";
-import "./TagInput.css"; // ✅ Import CSS
+import "./TagInput.css"; 
 
 const TagInput = ({ tags, setTags }) => {
   const [inputValue, setInputValue] = useState("");

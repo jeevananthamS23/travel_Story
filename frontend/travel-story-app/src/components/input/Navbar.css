@@ -3,16 +3,21 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem; /* px-4 py-2 */
+  padding: 0.5rem 1rem; 
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 10;
 }
-
+.header{
+  font-size: larger;
+  font-family: cursive;
+  font-weight: 600;
+   text-shadow: 2px 2px white;
+}
 @media (min-width: 640px) {
   .navbar {
-    padding: 0.5rem 1.5rem; /* sm:px-6 */
+    padding: 0.5rem 1.5rem;
   }
 }
 

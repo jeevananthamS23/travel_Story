@@ -1,6 +1,6 @@
 import React from "react";
 import { getInitials } from "../../utils/helper";
-import "./ProfileInfo.css"; // External CSS
+import "./ProfileInfo.css"; 
 
 const ProfileInfo = ({ userInfo, onLogout }) => {
   if (!userInfo) {

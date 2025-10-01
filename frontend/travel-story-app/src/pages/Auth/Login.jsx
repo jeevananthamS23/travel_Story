@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../../components/input/PasswordInput';
 import { validateEmail } from '../../utils/helper';
 import axiosInstance from '../../utils/axiosinstance';
-import './login.css'; // <-- Import new CSS
+import './login.css'; 
 
 const Login = () => {
   const navigate = useNavigate(); 

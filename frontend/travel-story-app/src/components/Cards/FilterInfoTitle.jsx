@@ -1,10 +1,10 @@
 import moment from "moment";
 import React from "react";
 import { MdOutlineClose } from "react-icons/md";
-import "./FilterInfoTitle.css"; // Import external CSS
+import "./FilterInfoTitle.css"; 
 
 const FilterInfoTitle = ({ filterType, filterDates, onClear }) => {
-  if (!filterType) return null; // Prevent rendering if no filter applied
+  if (!filterType) return null;
 
   return (
     <div className="filter-info-container">

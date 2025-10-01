@@ -1,7 +1,7 @@
 import React from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
-import "./Searchbar.css"; // ✅ Import CSS
+import "./Searchbar.css"; 
 
 const Searchbar = ({ value, onChange, handleSearch, onClearSearch }) => {
   return (

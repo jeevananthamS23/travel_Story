@@ -1,5 +1,5 @@
 import React from "react";
-import "./EmptyCard.css"; // Import external CSS
+import "./EmptyCard.css"; 
 
 const EmptyCard = ({ imgSrc, message }) => {
   return (

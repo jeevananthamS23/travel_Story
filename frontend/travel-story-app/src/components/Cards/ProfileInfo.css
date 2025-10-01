@@ -1,40 +1,40 @@
 .profile-loading {
-  font-size: 0.875rem; /* text-sm */
-  font-weight: 500;    /* font-medium */
-  color: #64748b;      /* text-slate-500 */
+  font-size: 0.875rem; 
+  font-weight: 500;    
+  color: #64748b;     
 }
 
 /* Container */
 .profile-container {
   display: flex;
   align-items: center;
-  gap: 0.75rem; /* gap-3 */
+  gap: 0.75rem;
 }
 
 @media (min-width: 640px) {
   .profile-container {
-    gap: 1rem; /* sm:gap-4 */
+    gap: 1rem; 
   }
 }
 
 /* Avatar */
 .profile-avatar {
-  width: 2.5rem;  /* w-10 */
-  height: 2.5rem; /* h-10 */
+  width: 2.5rem; 
+  height: 2.5rem; 
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 9999px; /* rounded-full */
-  font-weight: 600; /* font-semibold */
-  background-color: #f1f5f9; /* bg-slate-100 */
-  color: #0f172a; /* text-slate-950 */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* shadow-sm */
+  border-radius: 9999px; 
+  font-weight: 600; 
+  background-color: #f1f5f9; 
+  color: #0f172a; 
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); 
 }
 
 @media (min-width: 640px) {
   .profile-avatar {
-    width: 3rem;  /* sm:w-12 */
-    height: 3rem; /* sm:h-12 */
+    width: 3rem;  
+    height: 3rem; 
   }
 }
 
@@ -46,41 +46,41 @@
 
 @media (min-width: 640px) {
   .profile-info {
-    display: flex; /* sm:flex */
+    display: flex;
   }
 }
 
 /* Name */
 .profile-name {
-  font-size: 0.875rem; /* text-sm */
-  font-weight: 500;    /* font-medium */
-  color: #1e293b;      /* text-slate-800 */
-  max-width: 120px;    /* max-w-[120px] */
+  font-size: 0.875rem; 
+  font-weight: 500;    
+  color: #1e293b;     
+  max-width: 120px;   
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* truncate */
+  text-overflow: ellipsis; 
 }
 
 @media (min-width: 640px) {
   .profile-name {
-    font-size: 1rem; /* sm:text-base */
+    font-size: 1rem; 
   }
 }
 
 /* Logout Button */
 .profile-logout {
-  font-size: 0.75rem;  /* text-xs */
-  color: #475569;      /* text-slate-600 */
+  font-size: 0.75rem; 
+  color: #475569;     
   text-decoration: underline;
   transition: color 0.2s ease-in-out;
 }
 
 @media (min-width: 640px) {
   .profile-logout {
-    font-size: 0.875rem; /* sm:text-sm */
+    font-size: 0.875rem; 
   }
 }
 
 .profile-logout:hover {
-  color: #1e293b; /* hover:text-slate-800 */
+  color: #1e293b; 
 }
