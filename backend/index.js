@@ -14,7 +14,7 @@ mongoose.connect(process.env.MONGO_URI)
 });
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: "https://travel-story-7lg2.onrender.com" }));
+app.use(cors({ origin: "https://travel-story-1-5vca.onrender.com" }));
 const upload=require('./multer')
 const path=require('path');
 const fs=require('fs')
