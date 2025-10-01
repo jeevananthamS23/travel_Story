@@ -1,4 +1,4 @@
-export const BASE_URL='http://localhost:8000'   // database connection url
+export const BASE_URL='https://travel-story-7lg2.onrender.com'   // database connection url
 
 /**
  * BASE_URL Explanation
