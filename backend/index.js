@@ -353,21 +353,7 @@ app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    app.listen(8000,()=>console.log(`the surver running on the port ${8000}`));   // simply give app.listen()  function to run but why use call back function because then only you knoe the port is running or not
+const PORT = process.env.PORT || 8
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));   // simply give app.listen()  function to run but why use call back function because then only you knoe the port is running or not
 module.exports = app;
 

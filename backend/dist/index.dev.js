@@ -756,8 +756,9 @@ app.get("/travel-stories/filter", authenticateToken, function _callee12(req, res
 
 app.use("/uploads", express["static"](path.join(__dirname, "uploads")));
 app.use("/assets", express["static"](path.join(__dirname, "assets")));
-app.listen(8000, function () {
-  return console.log("the surver running on the port ".concat(8000));
+var PORT = process.env.PORT || 8;
+app.listen(PORT, function () {
+  return console.log("Server running on port ".concat(PORT));
 }); // simply give app.listen()  function to run but why use call back function because then only you knoe the port is running or not
 
 module.exports = app;
